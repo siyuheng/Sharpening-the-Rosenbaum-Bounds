@@ -1,0 +1,260 @@
+
+* This codebook is downloaded from the website of the Wisconsin Longitudinal Study (WLS): https://www.ssc.wisc.edu/wlsresearch/
+* SAS Data Definition File ;
+* Automatically generated on Mon, 30 Mar 2020 02:23:28 +0000. ;
+* Data contains 15 columns. ;
+
+options ls=256;
+title "Wisconsin Longitudinal Study";
+
+* You may need to modify this string to include the path;
+filename indata "wls_subset.txt";
+
+
+
+data wls (label="Wisconsin Longitudinal Study");
+	infile indata delimiter=',' dsd firstobs=2 lrecl=16384;
+	input
+	  	idpub       sexrsp      mu025rer    
+		gx351re     iv210rer    iv219rer    
+		iv216rer    iv213rer    iv218rer    
+		iv215rer    ga003re     mx011rec    
+		ixt06rer    ru025re     rb037re     
+		;
+
+	label idpub = "Public data release ID. On downloadable data. Replaced iduser from version 12.24 on.";
+	label sexrsp = "sex of respondent";
+	label mu025rer = "# days pst wk flt anry/hostl 4 svral hrs";
+	label gx351re = "Dr sd you had a heart attack, coronary heart disease, other heart prblms? ";
+	label iv210rer = "Til 18, did fthr treat U in way that U would now considr phys abuse? ";
+	label iv219rer = "Up 2 18, did any othr pers treat U in way that U consider sex abuse? ";
+	label iv216rer = "Up 2 18, did fthr treat U in way that U now consider sex abse? ";
+	label iv213rer = "Til 18, did mthr treat U in way that U would now considr phys abuse? ";
+	label iv218rer = "Up 2 18, did other pers use phys violnce during unwantd sex act w/ U? ";
+	label iv215rer = "Up 2 age 18, did fthr use phys violnce during unwantd sex act w/ U? ";
+	label ga003re = "Graduate respondent's age at time of interview. ";
+	label mx011rec = "r body mass";
+	label ixt06rer = "How old were you when you started smoking reg? ";
+	label ru025re = "r ever drunk alcoholic beverages?";
+	label rb037re = "rs educational success";
+run;
+
+proc format maxlablen=256;
+	value idpubf
+		900018-933957 = "Unique identifier"
+	;
+	value sexrspf
+		-30 = "NOT PART OF MOSAQ"
+		-29 = "LEFT BLANK ON SAQ"
+		-28 = "NOT ASKED OF PARTICIPANT OVER TELEPHONE"
+		-27 = "NOT ASKED OF PROXY"
+		-26 = "UNABLE TO CODE, MULTIPLE PEOPLE MENTIONE"
+		-5 = "PARTIAL INTERVIEW"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-2 = "INAP"
+		-1 = "DON'T KNOW"
+		1 = "MALE"
+		2 = "FEMALE"
+	;
+	value mu025rerf
+		-6 = "COULD NOT CODE"
+		-5 = "PARTIAL INTERVIEW"
+		-4 = "NOT ASCERTAINED"
+		-3 = "NOT ASCERTAINED/REFUSED"
+		-2 = "INAP"
+		-1 = "DON'T KNOW"
+		0 = "Zero Days"
+		1 = "One Day"
+		2 = "Two Days"
+		3 = "Three Days"
+		4 = "Four Days"
+		5 = "Five Days"
+		6 = "Six Days"
+		7 = "Seven Days"
+	;
+	value gx351ref
+		-31 = "INVALID ACTIVITY REPORTED AS JOB"
+		-30 = "NOT PART OF MOSAQ"
+		-29 = "LEFT BLANK ON SAQ"
+		-28 = "NOT ASKED OF PARTICIPANT OVER TELEPHONE"
+		-27 = "NOT ASKED OF PROXY"
+		-26 = "UNABLE TO CODE, MULTIPLE PEOPLE MENTIONE"
+		-20 = "VARIES"
+		-18 = "UNABLE TO CODE"
+		-15 = "MULTIPLE SESSIONS"
+		-6 = "COULD NOT CODE"
+		-5 = "PARTIAL INTERVIEW"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-2 = "INAP"
+		-1 = "DON'T KNOW"
+		1 = "YES"
+		2 = "NO"
+	;
+	value iv210rerf
+		-6 = "COULD NOT CODE"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-1 = "DON'T KNOW"
+		1 = "NOT AT ALL"
+		2 = "A LITTLE"
+		3 = "SOME"
+		4 = "A LOT"
+	;
+	value iv219rerf
+		-6 = "COULD NOT CODE"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-1 = "DON'T KNOW"
+		1 = "NOT AT ALL"
+		2 = "A LITTLE"
+		3 = "SOME"
+		4 = "A LOT"
+	;
+	value iv216rerf
+		-6 = "COULD NOT CODE"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-1 = "DON'T KNOW"
+		1 = "NOT AT ALL"
+		2 = "A LITTLE"
+		3 = "SOME"
+		4 = "A LOT"
+	;
+	value iv213rerf
+		-6 = "COULD NOT CODE"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-1 = "DON'T KNOW"
+		1 = "NOT AT ALL"
+		2 = "A LITTLE"
+		3 = "SOME"
+		4 = "A LOT"
+	;
+	value iv218rerf
+		-6 = "COULD NOT CODE"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-1 = "DON'T KNOW"
+		1 = "NOT AT ALL"
+		2 = "A LITTLE"
+		3 = "SOME"
+		4 = "A LOT"
+	;
+	value iv215rerf
+		-6 = "COULD NOT CODE"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-1 = "DON'T KNOW"
+		1 = "NOT AT ALL"
+		2 = "A LITTLE"
+		3 = "SOME"
+		4 = "A LOT"
+	;
+	value ga003ref
+		-31 = "INVALID ACTIVITY REPORTED AS JOB"
+		-30 = "NOT PART OF MOSAQ"
+		-29 = "LEFT BLANK ON SAQ"
+		-28 = "NOT ASKED OF PARTICIPANT OVER TELEPHONE"
+		-27 = "NOT ASKED OF PROXY"
+		-26 = "UNABLE TO CODE, MULTIPLE PEOPLE MENTIONE"
+		-25 = "ONLY DRANK AT RELIGIOUS SERVICES"
+		-24 = "VOLUNTEERED &lt; 1 DRINK PER DAY"
+		-22 = "DIFFERENT PAYMENT ARRANGEMENT"
+		-21 = "PAY ALL NOT COVERED BY THE PLAN (VOL)"
+		-20 = "VARIES"
+		-19 = "MILITARY OCCUPATION, NOT ASSIGNED"
+		-18 = "UNABLE TO CODE"
+		-17 = "SPECIAL MISSING CODE FOR ALLOCATION CASE"
+		-16 = "NOT ASCERTAINED (NEVER WENT TO USUAL PLA"
+		-15 = "MULTIPLE SESSIONS"
+		-13 = "PERCENT CHANGES OVER THE YEAR (VOL)"
+		-12 = "ESTIMATED FULL TIME"
+		-11 = "ESTIMATED PART TIME"
+		-9 = "ITEM NOT ON PATH"
+		-8 = "DK/R SCREENER QUESTION"
+		-7 = "NO INCOME/ASSET/GIFT"
+		-6 = "COULD NOT CODE"
+		-5 = "PARTIAL INTERVIEW"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-2 = "INAP"
+		-1 = "DON'T KNOW"
+	;
+	value mx011recf
+		-3 = "NOT ASCERTAINED/REFUSED"
+		-2 = "INAP"
+		-1 = "DON'T KNOW"
+	;
+	value ixt06rerf
+		-31 = "INVALID ACTIVITY REPORTED AS JOB"
+		-30 = "NOT PART OF MOSAQ"
+		-29 = "LEFT BLANK ON SAQ"
+		-28 = "NOT ASKED OF PARTICIPANT OVER TELEPHONE"
+		-27 = "NOT ASKED OF PROXY"
+		-26 = "UNABLE TO CODE, MULTIPLE PEOPLE MENTIONE"
+		-25 = "ONLY DRANK AT RELIGIOUS SERVICES"
+		-24 = "VOLUNTEERED &lt; 1 DRINK PER DAY"
+		-22 = "DIFFERENT PAYMENT ARRANGEMENT"
+		-21 = "PAY ALL NOT COVERED BY THE PLAN (VOL)"
+		-20 = "VARIES"
+		-19 = "MILITARY OCCUPATION, NOT ASSIGNED"
+		-18 = "UNABLE TO CODE"
+		-17 = "SPECIAL MISSING CODE FOR ALLOCATION CASE"
+		-16 = "NOT ASCERTAINED (NEVER WENT TO USUAL PLA"
+		-15 = "MULTIPLE SESSIONS"
+		-13 = "PERCENT CHANGES OVER THE YEAR (VOL)"
+		-12 = "ESTIMATED FULL TIME"
+		-11 = "ESTIMATED PART TIME"
+		-9 = "ITEM NOT ON PATH"
+		-8 = "DK/R SCREENER QUESTION"
+		-7 = "NO INCOME/ASSET/GIFT"
+		-6 = "COULD NOT CODE"
+		-5 = "PARTIAL INTERVIEW"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED"
+		-2 = "Inap. Respondent has never smoked cigare"
+		-1 = "DON'T KNOW"
+	;
+	value ru025ref
+		-3 = "REFUSED, NOT ASCERTAINED"
+		-2 = "INAPPROPRIATE, RU001RE = 0"
+		-1 = "DON'T KNOW"
+		1 = "YES"
+		2 = "NO"
+	;
+	value rb037ref
+		-5 = "PARTIAL INTERVIEW"
+		-4 = "NOT ASCERTAINED"
+		-3 = "REFUSED, NOT ASCERTAINED"
+		-2 = "INAPPROPRIATE"
+		-1 = "DON'T KNOW"
+		1 = "NOT AT ALL SUCCESSFUL"
+		2 = "NOT VERY SUCCESSFUL"
+		3 = "SOMEWHAT SUCCESSFUL"
+		4 = "VERY SUCCESSFUL"
+	;
+run;
+
+data wls;
+	set wls;
+
+	format
+		idpub idpubf.
+		sexrsp sexrspf.
+		mu025rer mu025rerf.
+		gx351re gx351ref.
+		iv210rer iv210rerf.
+		iv219rer iv219rerf.
+		iv216rer iv216rerf.
+		iv213rer iv213rerf.
+		iv218rer iv218rerf.
+		iv215rer iv215rerf.
+		ga003re ga003ref.
+		mx011rec mx011recf.
+		ixt06rer ixt06rerf.
+		ru025re ru025ref.
+		rb037re rb037ref.
+	;
+run;
